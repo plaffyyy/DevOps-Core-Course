@@ -1,0 +1,100 @@
+# DevOps Info Service
+
+## Docker images
+
+https://hub.docker.com/repository/docker/plaffyyy9/devops-info-service/image-management
+
+## Quick Start
+
+```bash
+pip install -r requirements.txt
+python app.py
+```
+
+## Testing
+
+```
+pytest tests/ -v --cov=app --cov-report=html
+open htmlcov/index.html  # 94% coverage
+```
+
+## Overview
+
+Lightweight web service providing system information, runtime status, and health checks. Foundation for comprehensive DevOps monitoring throughout the course.
+
+## Prerequisites
+
+* Python 3.11+
+* pip
+* git
+
+## Installation
+
+```
+python3.11 -m venv venv
+source venv/bin/activate      # Linux/Mac
+pip install -r requirements.txt
+```
+
+## Running the Application
+
+```
+python app.py                    # Default: http://0.0.0.0:5000
+PORT=8080 python app.py          # Custom port
+HOST=127.0.0.1 PORT=3000 python app.py  # Specific host/port
+DEBUG=true python app.py         # Debug mode (auto-reload)
+
+```
+
+## API Endpoints
+
+| Endpoint    | Method | Description                          |
+| ----------- | ------ | ------------------------------------ |
+| `/`       | GET    | Service, system, runtime information |
+| `/health` | GET    | Health status for monitoring         |
+
+```
+curl http://localhost:5000/
+curl http://localhost:5000/health
+```
+
+## Configuration
+
+Environment variables for flexible deployment:
+
+| Variable  | Default     | Description                   |
+| --------- | ----------- | ----------------------------- |
+| `HOST`  | `0.0.0.0` | Bind address                  |
+| `PORT`  | `5000`    | TCP port                      |
+| `DEBUG` | `False`   | Debug mode (development only) |
+
+**Example** :
+
+```
+export HOST=0.0.0.0
+export PORT=8080
+export DEBUG=true
+python app.py
+
+```
+
+# Docker build
+
+```bash
+docker build -t plaffyyy9/devops-info-service:lab2 .
+```
+
+## Local run
+
+```
+docker run --rm -p 8081:5001 plaffyyy9/devops-info-service:lab2
+```
+
+Open http://localhost:8081/
+
+## Pull from Docker Hub
+
+```
+docker pull plaffyyy9/devops-info-service:lab2
+docker run --rm -p 8081:5001 plaffyyy9/devops-info-service:lab2
+```
