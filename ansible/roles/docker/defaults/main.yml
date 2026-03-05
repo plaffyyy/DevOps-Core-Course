@@ -1,0 +1,6 @@
+---
+docker_user: plaffyyy9
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
