@@ -3,6 +3,7 @@
 [![Labs](https://img.shields.io/badge/Labs-18-blue)](#labs)
 [![Exam](https://img.shields.io/badge/Exam-Optional-green)](#exam-alternative)
 [![Duration](https://img.shields.io/badge/Duration-18%20Weeks-lightgrey)](#course-roadmap)
+[![Ansible Deployment](https://github.com/your-username/your-repo/actions/workflows/ansible-deploy.yml/badge.svg)](https://github.com/your-username/your-repo/actions/workflows/ansible-deploy.yml)
 
 Master **production-grade DevOps practices** through hands-on labs. Build, containerize, deploy, monitor, and scale applications using industry-standard tools.
 
@@ -177,6 +178,42 @@ git push -u origin lab1
 - [ ] Both PRs created
 
 </details>
+
+---
+
+## Quick Start - Lab 07 (Logging Stack)
+
+To deploy the monitoring stack from Lab 07:
+
+```bash
+# Navigate to monitoring directory
+cd monitoring
+
+# Start the stack (Loki, Promtail, Grafana, app-python)
+docker compose up -d --build
+
+# Verify all services are running
+docker compose ps
+
+# Access Grafana
+open http://localhost:3000
+
+# Generate test logs
+for i in {1..20}; do curl -s http://localhost:8000/ > /dev/null; done
+
+# View logs in Grafana Explore with query: {container="devops-python-app"}
+```
+
+**Services:**
+
+| Service | Port | Description |
+|---------|------|-------------|
+| Grafana | 3000 | Web UI for logs visualization |
+| Loki | 3100 | Log aggregation storage |
+| Promtail | 9080 | Log collector agent |
+| app-python | 8000 | Flask application with JSON logging |
+
+**Documentation:** See [monitoring/docs/LAB07.md](monitoring/docs/LAB07.md)
 
 ---
 
