@@ -1,0 +1,13 @@
+version: '{{ web_app_docker_compose_version | default("3.8") }}'
+
+services:
+  {{ web_app_name }}:
+    image: {{ web_app_docker_image | default("plaffyyy9/devops-info-service") }}:{{ web_app_docker_tag | default("latest") }}
+    container_name: {{ web_app_name }}
+    ports:
+      - "{{ web_app_port | default(8000) }}:{{ web_app_internal_port | default(8000) }}"
+    environment:
+      # Add environment variables here
+      # Use Vault-encrypted secrets
+    restart: unless-stopped
+    # Add other configuration
